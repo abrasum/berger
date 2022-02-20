@@ -13,7 +13,7 @@ def openCsv(filename = ""):
 def calcBerger(table = []):
     summary_list = []
     for row in table[1:]:
-        summary_list.append(float(row[len(row) - 1]))
+        summary_list.append(float(row[len(row) - 1].replace(',','.')))
     berger_list = []
     for row in table[1:]:
         player_id = 0
@@ -33,7 +33,7 @@ def writeCsv(filename = "", table = [], berger = []):
      
     with open(filename, 'w', newline='') as csvfile:
         spamwriter = csv.writer(csvfile, delimiter=',',
-                                quotechar='|', quoting=csv.QUOTE_MINIMAL)
+                                quotechar='"', quoting=csv.QUOTE_MINIMAL)
         i = 0
         for row in table:
             row.append(berger[i])
